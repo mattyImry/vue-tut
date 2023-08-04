@@ -1,10 +1,15 @@
 @import './base.css';
 
+body{
+  display: flex;
+  place-items: center;
+}
+
 #app {
+  display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
   font-weight: normal;
   background-image: url('cold-bg.jpg');
   background-size: cover;
@@ -14,6 +19,8 @@
 }
 
 main {
+
+  text-align: center;
   min-height: 100vh;
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
@@ -32,15 +39,5 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
+  
