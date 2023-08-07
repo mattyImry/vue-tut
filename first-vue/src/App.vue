@@ -14,7 +14,7 @@ interface WeatherData {
 }
 
 let query = ref('London')
-const weather = ref<WeatherData | null>(null)!
+const weather = ref<WeatherData | null>(null)
 
 let d: Date = new Date()
 let months: string[] = [
