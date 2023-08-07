@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import My from './components/My.vue'
 
 
-let query = '';
-let weather = ref([]);
+let query = ref('');
+const weather = ref<any>(null);
+ 
 
 watchEffect(async () => {
+  try {
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${query.value}&units=metric&id=524901&appid=7cc399b56538bbe7b6574e4860bb0802`);
+    const data = await response.json();
+    weather.value = data;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+  }
+});
   
-  weather.value = await(await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&id=524901&appid=7cc399b56538bbe7b6574e4860bb0802`)).json()
-  console.log(weather.value)
-  
-  })
 // export  { 
 //   name: 'app',
 //   data () {
@@ -53,17 +57,20 @@ watchEffect(async () => {
 
 <template>
   <main>
-    <My></My>
+    
     
     <div class="search-box">
+      <form action="">
       <input type="text" name="search-box" id="search-box" class="search-bar" placeholder="Search" v-model="query" >
+            
+    </form>
     </div>
     <div class="weather-wrap" >
       <div class="location-box">
         <div class="location">{{ weather.name }}</div>
         <div class="date">Monday 20</div>
         <div class="weather-box">
-          <div class="temp">{{ weather.main.temp }}C</div>
+          <div class="temp">{{ Math.floor(weather.main.temp) }}C</div>
           <div class="weather">{{ weather.weather[0].main }}</div>
         </div>
       </div>
