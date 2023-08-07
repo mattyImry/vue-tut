@@ -1,19 +1,70 @@
 <script setup lang="ts">
+import { ref, watchEffect } from 'vue';
+import My from './components/My.vue'
+
+
+let query = '';
+let weather = ref([]);
+
+watchEffect(async () => {
+  
+  weather.value = await(await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&id=524901&appid=7cc399b56538bbe7b6574e4860bb0802`)).json()
+  console.log(weather.value)
+  
+  })
+// export  { 
+//   name: 'app',
+//   data () {
+//     return {
+//       api_key: 'f6a2c317f97367bfe8fa3e5fc517e80d',
+//       url_base: 'https://api.openweathermap.org/data/2.5/',
+//       query: '',
+//       weather: {}
+//     }
+//   },
+//   methods: {
+//     fetchWeather (e) {
+//       if (e.key == "Enter") {
+//         fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+//           .then(res => {
+//             return res.json();
+//           }).then(this.setResults);
+//       }
+//     },
+//     setResults (results) {
+//       this.weather = results;
+//     },
+//     dateBuilder () {
+//       let d = new Date();
+//       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//       let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+//       let day = days[d.getDay()];
+//       let date = d.getDate();
+//       let month = months[d.getMonth()];
+//       let year = d.getFullYear();
+
+//       return `${day} ${date} ${month} ${year}`;
+//     }
+//   }
+// }
 
 </script>
 
 <template>
   <main>
+    <My></My>
+    
     <div class="search-box">
-      <input type="text" name="" id="" class="search-bar" placeholder="Search">
+      <input type="text" name="search-box" id="search-box" class="search-bar" placeholder="Search" v-model="query" >
     </div>
-    <div class="weather-wrap">
+    <div class="weather-wrap" >
       <div class="location-box">
-        <div class="location">London</div>
+        <div class="location">{{ weather.name }}</div>
         <div class="date">Monday 20</div>
         <div class="weather-box">
-          <div class="temp">9 C</div>
-          <div class="weather">Rain</div>
+          <div class="temp">{{ weather.main.temp }}C</div>
+          <div class="weather">{{ weather.weather[0].main }}</div>
         </div>
       </div>
     </div>
