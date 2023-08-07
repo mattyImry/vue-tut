@@ -66,11 +66,11 @@ watchEffect(async () => {
     </div>
     <div class="weather-wrap">
       <div class="location-box">
-        <div class="location">{{ weather.name }}</div>
+        <div class="location">{{ weather!.name }}</div>
         <div class="date">{{ day }} {{ date }} {{ month }} {{ year }}</div>
         <div class="weather-box">
-          <div class="temp">{{ Math.floor(weather.main.temp) }}C</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
+          <div class="temp">{{ Math.floor(weather!.main.temp) }}C</div>
+          <div class="weather">{{ weather!.weather[0].main }}</div>
         </div>
       </div>
     </div>
