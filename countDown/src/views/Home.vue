@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>Hello World</h3>
+  <div class="comps">
+    <h1>Count Down</h1>
     <Counter />
   </div>
 </template>
@@ -12,4 +12,9 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+.comps {
+  display: flex;
+  text-align: center;
+}
+</style>
