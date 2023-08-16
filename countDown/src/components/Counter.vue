@@ -1,10 +1,23 @@
 <template>
-  <div>
-    <section class="text-3 flex justify-center content-center flex-col mx-auto text-center"></section>
-    <section class="flex text-6xl justify-center content-center">
-      <div class="days mr-2 relative">
+  <div class="container">
+    <section>
+      <div class="semi">
         {{ displayDays }}
-        <div class="label text-sm absolute bottom-0"> Days</div>
+        <div class="">Days</div>
+      </div>
+      <div class="semi">
+        {{ displayHours }}
+
+        <div class="">Hours</div>
+      </div>
+      <div class="semi">
+        {{ displayMinutes }}
+
+        <div class="">Minutes</div>
+      </div>
+      <div class="semi">
+        {{ displaySeconds }}
+        <div class="">Seconds</div>
       </div>
     </section>
   </div>
@@ -17,8 +30,23 @@ export default {
     displayHours: 0,
     displayMinutes: 0,
     displaySeconds: 0
-  })
+  }),
+  computed: {}
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+section {
+  display: flex;
+  text-align: center;
+}
+
+.semi {
+  margin-left: 20px;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+}
+</style>
