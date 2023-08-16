@@ -1,6 +1,5 @@
 <template>
   <div class="comps">
-    <h1>Count Down</h1>
     <Counter />
   </div>
 </template>
