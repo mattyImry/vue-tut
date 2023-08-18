@@ -3,9 +3,15 @@ import Home from './views/Home.vue'
 </script>
 
 <template>
-  <div>
+  <div class="app">
     <Home />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

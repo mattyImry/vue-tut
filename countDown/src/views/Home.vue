@@ -1,5 +1,5 @@
 <template>
-  <div class="comps">
+  <div class="inputs">
     <label for="year">Year:</label>
     <input type="number" v-model="year" />
 
@@ -17,7 +17,8 @@
 
     <label for="second">Seconds:</label>
     <input type="number" v-model="second" />
-
+  </div>
+  <div class="comps">
     <Counter
       :year="year"
       :month="month"
@@ -51,7 +52,10 @@ export default {
 </script>
 <style lang="css" scoped>
 .comps {
-  display: flex;
+  text-align: center;
+}
+
+.inputs {
   text-align: center;
 }
 </style>
