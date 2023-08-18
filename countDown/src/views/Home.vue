@@ -5,7 +5,7 @@
       :month="7"
       :date="18"
       :hour="11"
-      :minute="30"
+      :minute="46"
       :second="22"
       :millisecond="11"
     />

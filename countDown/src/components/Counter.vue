@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="loaded">
     <h1>Count Down</h1>
+    <h3 v-if="!running">Counting</h3>
+    <h3 v-else>Count Down Completed</h3>
+
     <section>
       <div class="semi">
         {{ displayDays }}
@@ -31,7 +34,9 @@ export default {
     displayDays: 0,
     displayHours: 0,
     displayMinutes: 0,
-    displaySeconds: 0
+    displaySeconds: 0,
+    loaded: false,
+    running: false
   }),
   computed: {
     _seconds: () => 1000,
@@ -66,11 +71,13 @@ export default {
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date()
-        //const end = new Date(2025, 7, 17, 10, 10, 10, 10) ///end of timer
+
         const distance = this.end.getTime() - now.getTime()
 
         if (distance < 0) {
           clearInterval(timer)
+          this.running = true
+          this.loaded = true
           return
         }
 
@@ -82,6 +89,7 @@ export default {
         this.displaySeconds = this.formatNum(seconds)
         this.displayHours = this.formatNum(hours)
         this.displayDays = this.formatNum(days)
+        this.loaded = true
       }, 1000)
     }
   }
