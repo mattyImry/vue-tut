@@ -26,6 +26,7 @@
 
 <script>
 export default {
+  props: ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'],
   data: () => ({
     displayDays: 0,
     displayHours: 0,
@@ -42,6 +43,17 @@ export default {
     },
     _days() {
       return this._hours * 24
+    },
+    end() {
+      return new Date(
+        this.year,
+        this.month,
+        this.date,
+        this.hour,
+        this.minute,
+        this.second,
+        this.millisecond
+      )
     }
   },
   mounted() {
@@ -54,8 +66,8 @@ export default {
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date()
-        const end = new Date(2025, 7, 17, 10, 10, 10, 10) ///end of timer
-        const distance = end.getTime() - now.getTime()
+        //const end = new Date(2025, 7, 17, 10, 10, 10, 10) ///end of timer
+        const distance = this.end.getTime() - now.getTime()
 
         if (distance < 0) {
           clearInterval(timer)

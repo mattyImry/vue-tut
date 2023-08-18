@@ -1,6 +1,14 @@
 <template>
   <div class="comps">
-    <Counter />
+    <Counter
+      :year="2023"
+      :month="7"
+      :date="18"
+      :hour="11"
+      :minute="30"
+      :second="22"
+      :millisecond="11"
+    />
   </div>
 </template>
 <script>
