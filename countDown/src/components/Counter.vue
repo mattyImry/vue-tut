@@ -48,6 +48,9 @@ export default {
     this.showRemaining()
   },
   methods: {
+    formatNum(num) {
+      return num < 10 ? '0' + num : num
+    },
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date()
@@ -63,10 +66,10 @@ export default {
         const hours = Math.floor((distance % this._days) / this._hours)
         const minutes = Math.floor((distance % this._hours) / this._minutes)
         const seconds = Math.floor((distance % this._minutes) / this._seconds)
-        this.displayMinutes = minutes < 10 ? '0' + minutes : minutes
-        this.displaySeconds = seconds < 10 ? '0' + seconds : seconds
-        this.displayHours = hours < 10 ? '0' + hours : hours
-        this.displayDays = days < 10 ? '0' + days : days
+        this.displayMinutes = this.formatNum(minutes)
+        this.displaySeconds = this.formatNum(seconds)
+        this.displayHours = this.formatNum(hours)
+        this.displayDays = this.formatNum(days)
       }, 1000)
     }
   }
