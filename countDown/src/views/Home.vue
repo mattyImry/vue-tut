@@ -1,66 +1,68 @@
 <template>
+  <h1>Count Down</h1>
   <div class="inputs">
     <label for="year">Year: </label>
-    <input type="number" v-model="year" />
+    <input type="number" v-model="data.year" />
 
     <label for="month">Month: </label>
-    <input type="number" v-model="month" />
+    <input type="number" v-model="data.month" min="1" max="12" />
 
     <label for="date">Date: </label>
-    <input type="number" v-model="date" />
+    <input type="number" v-model="data.date" min="1" max="31" />
 
     <label for="hour">Hour: </label>
-    <input type="number" v-model="hour" />
+    <input type="number" v-model="data.hour" min="0" max="23" />
 
     <label for="minute">Minutes: </label>
-    <input type="number" v-model="minute" />
+    <input type="number" v-model="data.minute" min="0" max="60" />
 
     <label for="second">Seconds: </label>
-    <input type="number" v-model="second" />
+    <input type="number" v-model="data.second" min="0" max="60" />
   </div>
   <div class="comps">
     <Counter
-      :year="year"
-      :month="month"
-      :date="date"
-      :hour="hour"
-      :minute="minute"
-      :second="second"
+      :year="data.year"
+      :month="data.month"
+      :date="data.date"
+      :hour="data.hour"
+      :minute="data.minute"
+      :second="data.second"
       :millisecond="0"
     />
   </div>
 
   <div class="pre-sets"></div>
 </template>
-<script>
+<script setup>
 import Counter from '@/components/Counter.vue'
+import { ref } from 'vue'
 
-export default {
-  components: {
-    Counter
-  },
+// export default {
+//   components: {
+//     Counter
+//   },
 
-  data() {
-    return {
-      year: 2025,
-      month: 5,
-      date: 22,
-      hour: 10,
-      minute: 55,
-      second: 22,
-      millisecond: 11
-    }
-  }
-}
+const data = ref({
+  year: 2023,
+  month: 12,
+  date: 9,
+  hour: 1,
+  minute: 10,
+  second: 10,
+  millisecond: 10
+})
 </script>
 <style lang="css" scoped>
+h1 {
+  margin-bottom: 1rem;
+}
 .comps {
   text-align: center;
 }
 
 .inputs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
 }
 
