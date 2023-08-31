@@ -37,11 +37,6 @@
 import Counter from '@/components/Counter.vue'
 import { ref } from 'vue'
 
-// export default {
-//   components: {
-//     Counter
-//   },
-
 const data = ref({
   year: 2023,
   month: 12,

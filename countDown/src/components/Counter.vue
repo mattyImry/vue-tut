@@ -45,7 +45,7 @@ const end = computed(
   () =>
     new Date(
       props.year,
-      props.month,
+      props.month - 1,
       props.date,
       props.hour,
       props.minute,
@@ -61,12 +61,12 @@ const showRemaining = () => {
     const now = new Date()
     const distance = end.value.getTime() - now.getTime()
 
-    if (distance < 0) {
-      clearInterval(timer)
-      running.value = true
-      loaded.value = true
-      return
-    }
+    // if (distance < 0) {
+    //   clearInterval(timer)
+    //   running.value = true
+    //   loaded.value = true
+    //   return
+    // }
 
     const days = Math.floor(distance / _days.value)
     const hours = Math.floor((distance % _days.value) / _hours.value)
