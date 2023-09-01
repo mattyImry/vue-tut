@@ -21,6 +21,7 @@
         <div class="">Seconds</div>
       </div>
     </section>
+
     <Presets :end="end" @sendPreset="handlePresets" @reset="handleReset" />
   </div>
 </template>
@@ -31,7 +32,7 @@ import Presets from './Presets.vue'
 
 const props = defineProps(['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'])
 
-const secondsFromChild = ref(0)
+const dateFromChild = ref(0)
 
 const displayDays = ref(0)
 const displayHours = ref(0)
@@ -88,13 +89,14 @@ const showRemaining = () => {
   })
 }
 
-function handlePresets(newEndTime) {
-  secondsFromChild.value = newEndTime
-  end.value = newEndTime
+function handlePresets(dateFromChild) {
+  // dateFromChild.value = newEndTime
+  end.value = dateFromChild
 }
 
 function handleReset() {
-  showRemaining()
+  console.log('parent')
+  // showRemaining(end.value)
 }
 
 onMounted(showRemaining)

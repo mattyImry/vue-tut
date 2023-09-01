@@ -13,12 +13,16 @@ import { ref, defineProps, defineEmits } from 'vue'
 const emit = defineEmits(['sendPreset', 'reset'])
 
 const { end } = defineProps(['end'])
+
+//new end cause props cannot modify
 const presetEnd = ref(end)
 
 function setPresetTimer(seconds) {
   const now = new Date()
   const newEndTime = new Date(now.getTime() + seconds * 1000)
   presetEnd.value = newEndTime
+
+  //from child comp
   emit('sendPreset', newEndTime)
 }
 function reset() {
