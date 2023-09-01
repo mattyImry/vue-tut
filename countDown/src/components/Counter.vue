@@ -21,6 +21,9 @@
         <div class="">Seconds</div>
       </div>
     </section>
+    <div>
+      <button @click="showRemaining">start</button>
+    </div>
   </div>
 </template>
 
@@ -60,13 +63,18 @@ const showRemaining = () => {
   const timer = setInterval(() => {
     const now = new Date()
     const distance = end.value.getTime() - now.getTime()
+    running.value = false
 
-    // if (distance < 0) {
-    //   clearInterval(timer)
-    //   running.value = true
-    //   loaded.value = true
-    //   return
-    // }
+    if (distance < 0) {
+      clearInterval(timer)
+      running.value = true
+      loaded.value = true
+      displayMinutes.value = 0
+      displaySeconds.value = 0
+      displayHours.value = 0
+      displayDays.value = 0
+      return
+    }
 
     const days = Math.floor(distance / _days.value)
     const hours = Math.floor((distance % _days.value) / _hours.value)
