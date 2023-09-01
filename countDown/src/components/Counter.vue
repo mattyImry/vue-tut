@@ -21,17 +21,13 @@
         <div class="">Seconds</div>
       </div>
     </section>
-    <div>
-      <button @click="showRemaining">start</button>
-      <button @click="setPresetTimer(10)">10 seconds</button>
-      <button @click="setPresetTimer(10 * 60)">10 Minutes</button>
-      <button @click="setPresetTimer(30 * 60)">30 Minutes</button>
-    </div>
+    <Presets :end="end" />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import Presets from './Presets.vue'
 
 const props = defineProps(['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'])
 
@@ -58,13 +54,6 @@ const end = ref(
     props.millisecond
   )
 )
-
-function setPresetTimer(seconds) {
-  const now = new Date()
-  const newEndTime = new Date(now.getTime() + seconds * 1000)
-  end.value = newEndTime
-  showRemaining()
-}
 
 const formatNum = (num) => (num < 10 ? '0' + num : num)
 
