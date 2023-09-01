@@ -21,7 +21,7 @@
         <div class="">Seconds</div>
       </div>
     </section>
-    <Presets :end="end" />
+    <Presets :end="end" @sendPreset="showRemaining" />
   </div>
 </template>
 
