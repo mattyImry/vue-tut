@@ -30,8 +30,6 @@
       :millisecond="0"
     />
   </div>
-
-  <div class="pre-sets"></div>
 </template>
 <script setup>
 import Counter from '@/components/Counter.vue'

@@ -23,6 +23,9 @@
     </section>
     <div>
       <button @click="showRemaining">start</button>
+      <button @click="setPresetTimer(10)">10 seconds</button>
+      <button @click="setPresetTimer(10 * 60)">10 Minutes</button>
+      <button @click="setPresetTimer(30 * 60)">30 Minutes</button>
     </div>
   </div>
 </template>
@@ -44,18 +47,24 @@ const _minutes = computed(() => _seconds * 60)
 const _hours = computed(() => _minutes.value * 60)
 const _days = computed(() => _hours.value * 24)
 
-const end = computed(
-  () =>
-    new Date(
-      props.year,
-      props.month - 1,
-      props.date,
-      props.hour,
-      props.minute,
-      props.second,
-      props.millisecond
-    )
+const end = ref(
+  new Date(
+    props.year,
+    props.month - 1,
+    props.date,
+    props.hour,
+    props.minute,
+    props.second,
+    props.millisecond
+  )
 )
+
+function setPresetTimer(seconds) {
+  const now = new Date()
+  const newEndTime = new Date(now.getTime() + seconds * 1000)
+  end.value = newEndTime
+  showRemaining()
+}
 
 const formatNum = (num) => (num < 10 ? '0' + num : num)
 
@@ -85,7 +94,7 @@ const showRemaining = () => {
     displayHours.value = formatNum(hours)
     displayDays.value = formatNum(days)
     loaded.value = true
-  }, 1000)
+  })
 }
 
 onMounted(showRemaining)
