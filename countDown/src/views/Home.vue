@@ -1,4 +1,4 @@
-<template>
+<template lang="ts">
   <h1>Count Down</h1>
   <div class="inputs">
     <label for="year">Year: </label>
@@ -32,7 +32,6 @@
   </div>
 </template>
 <script setup>
-import Counter from '@/components/Counter.vue'
 import { ref } from 'vue'
 
 const data = ref({

@@ -1,4 +1,4 @@
-<template>
+<template lang="ts">
   <div>
     <button @click.prevent="reset">start</button>
     <button @click.prevent="setPresetTimer(10)">10 seconds</button>
