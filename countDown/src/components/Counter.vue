@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 import Presets from './Presets.vue'
 
 const props = defineProps(['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'])
@@ -58,12 +58,23 @@ const end = ref(
   )
 )
 
+watchEffect(() => {
+  // Update the 'end' ref with new input values
+  end.value = new Date(
+    props.year,
+    props.month - 1,
+    props.date,
+    props.hour,
+    props.minute,
+    props.second,
+    props.millisecond
+  )
+})
+
 const formatNum = (num) => (num < 10 ? '0' + num : num)
-let timer
 
 const showRemaining = () => {
-  clearInterval(timer)
-  timer = setInterval(() => {
+  const timer = setInterval(() => {
     const now = new Date()
     const distance = end.value.getTime() - now.getTime()
     running.value = false
@@ -92,17 +103,14 @@ const showRemaining = () => {
 }
 
 function handlePresets(dateFromChild) {
-  // dateFromChild.value = newEndTime
   end.value = dateFromChild
-  clearInterval(timer) // Clear the previous timer
+
   showRemaining() // Start a new timer with the updated end time
 }
 
 function handleReset() {
   console.log('parent')
-  clearInterval(timer) // Clear the previous timer
-  showRemaining() // Start a new timer with the updated end time
-  // showRemaining(end.value)
+  showRemaining(end.value)
 }
 
 onMounted(showRemaining)
