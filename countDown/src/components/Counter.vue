@@ -59,9 +59,11 @@ const end = ref(
 )
 
 const formatNum = (num) => (num < 10 ? '0' + num : num)
+let timer
 
 const showRemaining = () => {
-  const timer = setInterval(() => {
+  clearInterval(timer)
+  timer = setInterval(() => {
     const now = new Date()
     const distance = end.value.getTime() - now.getTime()
     running.value = false
@@ -92,10 +94,14 @@ const showRemaining = () => {
 function handlePresets(dateFromChild) {
   // dateFromChild.value = newEndTime
   end.value = dateFromChild
+  clearInterval(timer) // Clear the previous timer
+  showRemaining() // Start a new timer with the updated end time
 }
 
 function handleReset() {
   console.log('parent')
+  clearInterval(timer) // Clear the previous timer
+  showRemaining() // Start a new timer with the updated end time
   // showRemaining(end.value)
 }
 
