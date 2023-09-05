@@ -1,4 +1,4 @@
-<template lang="ts">
+<template>
   <div class="container" v-if="loaded">
     <h3 v-if="!running">Counting</h3>
     <h3 v-else>Count Down Completed</h3>

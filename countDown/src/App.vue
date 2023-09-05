@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import Home from './views/Home.vue'
 </script>
 

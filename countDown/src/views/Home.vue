@@ -1,4 +1,4 @@
-<template lang="ts">
+<template>
   <h1>Count Down</h1>
   <div class="inputs">
     <label for="year">Year: </label>
