@@ -22,7 +22,7 @@ function setPresetTimer(seconds) {
   const newEndTime = new Date(now.getTime() + seconds * 1000)
   presetEnd.value = newEndTime
 
-  //to parent comp
+  //from child comp
   emit('sendPreset', newEndTime)
 }
 function reset() {

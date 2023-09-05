@@ -32,6 +32,8 @@ import Presets from './Presets.vue'
 
 const props = defineProps(['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'])
 
+const dateFromChild = ref(0)
+
 const displayDays = ref(0)
 const displayHours = ref(0)
 const displayMinutes = ref(0)
@@ -102,11 +104,13 @@ const showRemaining = () => {
 
 function handlePresets(dateFromChild) {
   end.value = dateFromChild
-  showRemaining()
+
+  showRemaining() // Start a new timer with the updated end time
 }
 
 function handleReset() {
-  showRemaining()
+  console.log('parent')
+  showRemaining(end.value)
 }
 
 onMounted(showRemaining)
