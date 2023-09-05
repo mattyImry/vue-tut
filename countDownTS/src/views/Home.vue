@@ -32,11 +32,20 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineComponent } from 'vue'
-// import Counter from '@/components/Counter.vue'
+import Counter from '@/components/Counter.vue'
 import { ref } from 'vue'
 
-const data = ref({
+interface DatesInput {
+  year: number
+  month: number
+  date: number
+  hour: number
+  minute: number
+  second: number
+  millisecond: number
+}
+
+const data = ref<DatesInput>({
   year: 2023,
   month: 12,
   date: 9,
