@@ -32,6 +32,7 @@
   </div>
 </template>
 <script setup>
+import Counter from '@/components/Counter.vue'
 import { ref } from 'vue'
 
 const data = ref({
