@@ -30,16 +30,18 @@
 import { ref, computed, onMounted, watchEffect } from 'vue'
 import Presets from './Presets.vue'
 
-interface Props {
-  year: number
-  month: number
-  date: number
-  hour: number
-  minute: number
-  second: number
-  millisecond: number
-}
-const props = defineProps<Props>()
+import type { DatesInput } from '../views/Home.vue'
+
+// interface Props {
+//   year: number
+//   month: number
+//   date: number
+//   hour: number
+//   minute: number
+//   second: number
+//   millisecond: number
+// }
+const props = defineProps<DatesInput>()
 
 const displayDays = ref<number>(0)
 const displayHours = ref<number>(0)
