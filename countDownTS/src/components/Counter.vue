@@ -30,14 +30,23 @@
 import { ref, computed, onMounted, watchEffect } from 'vue'
 import Presets from './Presets.vue'
 
-const props = defineProps(['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'])
+interface Props {
+  year: number
+  month: number
+  date: number
+  hour: number
+  minute: number
+  second: number
+  millisecond: number
+}
+const props = defineProps<Props>()
 
-const displayDays = ref(0)
-const displayHours = ref(0)
-const displayMinutes = ref(0)
-const displaySeconds = ref(0)
-const loaded = ref(false)
-const running = ref(false)
+const displayDays = ref<number>(0)
+const displayHours = ref<number>(0)
+const displayMinutes = ref<number>(0)
+const displaySeconds = ref<number>(0)
+const loaded = ref<boolean>(false)
+const running = ref<boolean>(false)
 
 const _seconds = 1000
 const _minutes = computed(() => _seconds * 60)
@@ -69,12 +78,12 @@ watchEffect(() => {
   )
 })
 
-const formatNum = (num) => (num < 10 ? '0' + num : num)
+const formatNum = (num: number): number => (num < 10 ? 0 + num : num)
 
-const showRemaining = () => {
+const showRemaining = (): void => {
   const timer = setInterval(() => {
-    const now = new Date()
-    const distance = end.value.getTime() - now.getTime()
+    const now: Date = new Date()
+    const distance: number = end.value.getTime() - now.getTime()
     running.value = false
 
     if (distance < 0) {
@@ -100,7 +109,7 @@ const showRemaining = () => {
   })
 }
 
-function handlePresets(dateFromChild) {
+function handlePresets(dateFromChild: Date) {
   end.value = dateFromChild
   showRemaining()
 }

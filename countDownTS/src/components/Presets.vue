@@ -8,16 +8,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref } from 'vue'
 
 const emit = defineEmits(['sendPreset', 'reset'])
 
-const { end } = defineProps(['end'])
+const presetEnd = ref<Date | null>(null)
 
-//new end cause props cannot modify
-const presetEnd = ref(end)
-
-function setPresetTimer(seconds) {
+function setPresetTimer(seconds: number): void {
   const now = new Date()
   const newEndTime = new Date(now.getTime() + seconds * 1000)
   presetEnd.value = newEndTime
@@ -26,6 +23,7 @@ function setPresetTimer(seconds) {
   emit('sendPreset', newEndTime)
 }
 function reset() {
+  presetEnd.value = null
   emit('reset')
 }
 </script>
