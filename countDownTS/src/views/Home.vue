@@ -35,7 +35,7 @@
 import Counter from '@/components/Counter.vue'
 import { ref } from 'vue'
 
-interface DatesInput {
+export interface DatesInput {
   year: number
   month: number
   date: number
