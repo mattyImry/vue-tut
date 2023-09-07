@@ -22,7 +22,8 @@ function setPresetTimer(seconds: number): void {
   //to parent comp
   emit('sendPreset', newEndTime)
 }
-function reset() {
+
+function reset(): void {
   presetEnd.value = null
   emit('reset')
 }
