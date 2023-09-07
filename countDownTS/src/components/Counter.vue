@@ -22,7 +22,7 @@
       </div>
     </section>
 
-    <Presets :end="end" @sendPreset="handlePresets" @reset="handleReset" />
+    <Presets @sendPreset="handlePresets" @reset="handleReset" />
   </div>
 </template>
 
@@ -122,5 +122,9 @@ section {
 
 .semi {
   margin-left: 20px;
+}
+
+.container h3 {
+  font-weight: 500;
 }
 </style>

@@ -1,14 +1,23 @@
 <template>
   <div>
-    <button @click.prevent="reset">start</button>
+    <button @click.prevent="reset()">Start Timer</button>
     <button @click.prevent="setPresetTimer(10)">10 seconds</button>
     <button @click.prevent="setPresetTimer(10 * 60)">10 Minutes</button>
     <button @click.prevent="setPresetTimer(30 * 60)">30 Minutes</button>
+  </div>
+  <div class="input-user">
+    <h3>Set your timer</h3>
+
+    <label for="hour">Minutes: </label>
+    <input type="number" name="minutes" v-model="inputTime" />
+    <button @click.prevent="setPresetTimer(inputTime * 60)">Set Timer</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+const inputTime = ref(0)
 
 const emit = defineEmits<{ sendPreset: [newEndTime: Date]; reset: [] }>()
 
@@ -29,4 +38,12 @@ function reset(): void {
 }
 </script>
 
-<style></style>
+<style>
+.input-user {
+  margin-top: 20px;
+}
+
+.input-user h3 {
+  font-weight: 500;
+}
+</style>
