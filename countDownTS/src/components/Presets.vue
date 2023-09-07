@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const emit = defineEmits(['sendPreset', 'reset'])
+const emit = defineEmits<{ sendPreset: [newEndTime: Date]; reset: [] }>()
 
 const presetEnd = ref<Date | null>(null)
 

@@ -32,15 +32,6 @@ import Presets from './Presets.vue'
 
 import type { DatesInput } from '../views/Home.vue'
 
-// interface Props {
-//   year: number
-//   month: number
-//   date: number
-//   hour: number
-//   minute: number
-//   second: number
-//   millisecond: number
-// }
 const props = defineProps<DatesInput>()
 
 const displayDays = ref<number>(0)
@@ -111,12 +102,12 @@ const showRemaining = (): void => {
   })
 }
 
-function handlePresets(dateFromChild: Date) {
+function handlePresets(dateFromChild: Date): void {
   end.value = dateFromChild
   showRemaining()
 }
 
-function handleReset() {
+function handleReset(): void {
   showRemaining()
 }
 
